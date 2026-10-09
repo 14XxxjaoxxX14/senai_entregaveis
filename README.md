@@ -4,7 +4,7 @@ Este projeto é uma aplicação web desenvolvida em **Django** e **MySQL**, foca
 
 ---
 
-## 🚀 Funcionalidades Principais
+## Funcionalidades Principais
 
 * **Identidade Visual SENAI**: Sobrescrita completa do CSS do Django Admin com suporte a temas claros e escuros com alto contraste.
 * **Simplificação do Admin**: Remoção da interface nativa de permissões complexas e exibição simplificada dos cadastros de **Usuários**, **Grupos** e **Tarefas**.
