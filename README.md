@@ -1,4 +1,4 @@
-# 🛠️ SENAI Entregáveis — Painel de Administração Customizado
+# SENAI Entregáveis — Painel de Administração Customizado
 
 Este projeto é uma aplicação web desenvolvida em **Django** e **MySQL**, focada na gestão de tarefas e equipes. O objetivo principal foi reestruturar e estilizar integralmente a interface nativa do **Django Admin** para atender à identidade visual do **SENAI** (paleta azul `#0056b3` e branco), garantindo alta usabilidade, ocultação de permissões sensíveis do sistema e automação de testes com integração contínua.
 
@@ -15,7 +15,7 @@ Este projeto é uma aplicação web desenvolvida em **Django** e **MySQL**, foca
 
 ---
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
@@ -25,7 +25,7 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
 ---
 
-## 🗄️ Configuração do Banco de Dados (MySQL)
+## Configuração do Banco de Dados (MySQL)
 
 O projeto está configurado no arquivo `meusegundoprojeto/settings.py` para conectar ao MySQL local com os seguintes dados:
 
