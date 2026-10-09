@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group as AuthGroup
 from django.contrib.auth.admin import UserAdmin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Tarefas, Grupo  # Se no seu models.py estiver 'Tarefas', altere para Tarefas
+from .models import Tarefas, Grupo  
 
 
 class RedirectToAdminIndexMixin:
@@ -19,27 +19,24 @@ class RedirectToAdminIndexMixin:
         return super().response_change(request, obj)
 
 
-# 1. Remover o Grupo nativo do Django (evita caixas de permissões do sistema)
+
 admin.site.unregister(AuthGroup)
 
-# 2. Reconfigurar Usuários sem a aba de Permissões
 admin.site.unregister(User)
 
 @admin.register(User)
 class CustomUserAdmin(RedirectToAdminIndexMixin, UserAdmin):
-    # Restringe a exibição apenas a dados básicos e pessoais (sem permissões)
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Informações Pessoais', {'fields': ('first_name', 'last_name', 'email')}),
     )
 
 
-# 3. Reconfigurar Grupos (exibe apenas Nome e seleção de Membros)
 @admin.register(Grupo)
 class GrupoAdmin(RedirectToAdminIndexMixin, admin.ModelAdmin):
     list_display = ('nome', 'exibir_membros')
     filter_horizontal = ('membros',)
-    fields = ('nome', 'membros')  # Garante que não haverá caixa de permissões
+    fields = ('nome', 'membros')  
 
     def exibir_membros(self, obj):
         membros = [m.username for m in obj.membros.all()]

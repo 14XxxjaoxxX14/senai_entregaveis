@@ -11,14 +11,14 @@ def test_usuario_em_multiplos_grupos_e_tarefas():
     maria = User.objects.create_user(username='maria', password='123')
     pedro = User.objects.create_user(username='pedro', password='123')
 
-    # 2. Cria dois grupos distintos
+
     grupo_backend = Grupo.objects.create(nome='Equipe Backend')
     grupo_backend.membros.add(joao, maria)
 
     grupo_frontend = Grupo.objects.create(nome='Equipe Frontend')
-    grupo_frontend.membros.add(joao, pedro)  # João está em ambos os grupos!
+    grupo_frontend.membros.add(joao, pedro)  
 
-    # 3. Cria tarefas com grupos diferentes atribuídas ao mesmo responsável (João)
+    
     tarefa1 = Tarefas.objects.create(
         titulo='Modelagem MySQL',
         descricao='Criar tabelas no banco',
@@ -34,7 +34,7 @@ def test_usuario_em_multiplos_grupos_e_tarefas():
     )
 
     # Asserções de validação
-    assert joao.grupos_pertencentes.count() == 2  # João pertence aos 2 grupos
+    assert joao.grupos_pertencentes.count() == 2  
     assert tarefa1.grupo.nome == 'Equipe Backend'
     assert tarefa2.grupo.nome == 'Equipe Frontend'
     assert tarefa1.usuario == tarefa2.usuario == joao
