@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SENAI - Entregável Etapa 2</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho com o Botão de Acesso ao Admin -->
+        <div class="header-bar">
+            <h1>Painel de Entregáveis - SENAI</h1>
+            <a href="{% url 'admin:index' %}" class="btn-admin">⚙️ Acessar Painel Admin</a>
+        </div>
+
+        <h2>Lista de Tarefas Cadastradas</h2>
+        <ul>
+            {% for tarefa in tarefas %}
+                <li class="card-tarefa">
+                    <h3>{{ tarefa.titulo }}</h3>
+                    <p>{{ tarefa.descricao }}</p>
+                    
+                    <p><strong>Usuário Responsável:</strong> {{ tarefa.usuario.username|default:"Não atribuído" }}</p>
+
+                    {% if tarefa.grupo %}
+                        <div class="bloco-grupo">
+                            <p><strong>Grupo Atribuído:</strong> {{ tarefa.grupo.nome }}</p>
+                            <p><strong>Integrantes do Grupo:</strong></p>
+                            <ul class="lista-membros">
+                                {% for membro in tarefa.grupo.membros.all %}
+                                    <li>👤 {{ membro.username }} {% if membro.first_name %}({{ membro.first_name }}){% endif %}</li>
+                                {% empty %}
+                                    <li>Nenhum integrante associado a este grupo.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% else %}
+                        <p><em>Nenhum grupo atribuído a esta tarefa.</em></p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>Nenhuma tarefa cadastrada no MySQL.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
